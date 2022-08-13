@@ -1,3 +1,4 @@
+from email import message
 import discord
 from config import *
 
@@ -9,13 +10,14 @@ client = discord.Client(intents=intents)
 
 
 @client.event
-async def on_guild_channel_create(channel):
+async def on_guild_channel_create(channel: discord.abc.GuildChannel):
     if (type(channel) is not discord.TextChannel):
         return
     if (channel.category_id != ids['parent']):
         return
 
-    print("Channel created")
+    message = await channel.send("_")
+    await message.create_thread(name="📦・pending")
 
 
 @client.event
