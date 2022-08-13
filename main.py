@@ -1,4 +1,3 @@
-from email import message
 import discord
 from config import *
 
@@ -18,6 +17,7 @@ async def on_guild_channel_create(channel: discord.abc.GuildChannel):
 
     message = await channel.send("_")
     await message.create_thread(name="📦・pending")
+    await message.delete()
 
 
 @client.event
