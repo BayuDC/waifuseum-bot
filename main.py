@@ -3,8 +3,19 @@ from config import *
 
 intents = discord.Intents.default()
 intents.members = True
+intents.guilds = True
 
 client = discord.Client(intents=intents)
+
+
+@client.event
+async def on_guild_channel_create(channel):
+    if (type(channel) is not discord.TextChannel):
+        return
+    if (channel.category_id != ids['parent']):
+        return
+
+    print("Channel created")
 
 
 @client.event
