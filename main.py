@@ -9,7 +9,9 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_member_join(member: discord.Member):
-    print(f"{member.display_name} joined")
+    role_id = ids['member']
+    role = member.guild.get_role(role_id)
+    await member.add_roles(role)
 
 
 @client.event
